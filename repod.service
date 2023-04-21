@@ -1,0 +1,11 @@
+; repo.service
+[Unit]
+Description=Repod
+
+[Service]
+ExecStart=/path/to/your/daemon/binary
+Restart=always
+User={{ username }} ; Use the placeholder for dynamic username
+
+[Install]
+WantedBy=multi-user.target

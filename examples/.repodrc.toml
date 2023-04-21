@@ -6,8 +6,6 @@ port = 80
 path = "/github-webhooks"
 type = "github"
 branch = "main"
-command = "echo 'hello world'"
-root_path = "~"
 
 
 [repos.repo1]
@@ -19,4 +17,5 @@ branch = "main"
 url = ""
 remote = "origin"
 root_path = "/home/wwwroot/repo1"
-command = "echo 'hello world'"
+updates = ["git pull"]
+commands = ["echo 'hello world'"]

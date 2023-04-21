@@ -1,15 +1,19 @@
-use std::path::Path;
+use crate::configuration::{RepodConfig, RepositoryConfig};
 
-use crate::configs::default_configs::DEFAULT_CONFIG_FILE_PATH;
-use std::fs;
-
-pub async fn add_repo(
+pub fn add_repo(
     name: String,
     r#type: Option<String>,
     branch: Option<String>,
     server: Option<String>,
     port: Option<String>,
-    root_path: Option<String>,
-    command: String,
+    root_path: String,
+    command: Vec<String>,
+    update: Vec<String>,
 ) {
+    let mut config = RepodConfig::from_default_config_file_sync().unwrap();
+    config.add_repo(RepositoryConfig::new(
+        name, command, update, root_path, r#type, branch, server, port,
+    ));
+
+    let res = config.to_default_config_file_sync();
 }
